@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>demo.xinwin</groupId>
+    <artifactId>shiro-springboot-demo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>springboot-shiro-configure</module>
+        <module>demo-shiro-interface</module>
+        <module>demo-shiro-service</module>
+        <module>demo-shiro-web</module>
+    </modules>
+
+    <properties>
+         <springboot.version>1.3.3.RELEASE</springboot.version>
+         <lombok.version>1.16.4</lombok.version>
+         <mysql.version>5.1.21</mysql.version>
+         <commons-lang3.version>3.1</commons-lang3.version>
+         <commons-io.version>2.4</commons-io.version>
+        <guava.version>14.0.1</guava.version>
+         <calimero.version>2.2</calimero.version>
+         <commons-io.version>2.4</commons-io.version>
+          <lombok.version>1.16.4</lombok.version>
+        <shiro.version>1.2.4</shiro.version>
+        <java.version>1.8</java.version>
+        <netty.version>4.0.36.Final</netty.version>
+        <junit.version>4.12</junit.version>
+        
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>include-generated-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/generated-sources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <compilerVersion>${java.version}</compilerVersion>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
+                        </configuration>
+                    </plugin>
+
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,29 @@
+
+.login-wrap{min-height: 460px;}
+.login-inner{position: relative; width: 1180px; min-height: 460px; margin: 0 auto; padding-bottom: 20px; overflow: hidden;}
+
+
+.login-right{ width: 700px; position: static;  padding: 10px 0 25px; float: left; margin: 20px 0 0 100px;}
+.login-title{height: 48px; background: #fff;  line-height: 48px; /*text-align: center;border-bottom: 1px solid #eee;*/  font-size: 16px; color: #666; font-weight: bold;}
+
+.passport-regist{padding-top: 8px;border-right:1px solid #e7e7eb;}
+.passport-regist p.p{ float:left;width: 298px; height: 38px; border: 1px solid #ccc;margin-bottom: 20px; border-radius: 3px;}
+
+
+.passport-regist .form-group:after,.passport-regist .form-group:before{display: table; content: ""; clear: both;}
+.passport-regist .form-group label{float: left; height: 38px; line-height: 38px; width: 120px; font-size: 14px; font-weight: bold;}
+.passport-regist .form-group .tips{float: left;font-size: 12px; color: #666; padding-left: 15px; line-height: 20px;}
+
+.passport-regist p:hover{border-color: #249CFA;}
+
+.passport-regist p input{height: 28px; /*width: 251px;*/ width: 280px; line-height: 28px; float: left; padding: 4px 9px; border: 0; outline: none;}
+
+.passport-regist p.p3{text-align: center;width: 300px; height: 40px; margin-left: 120px;}
+
+.passport-regist p.p3 input{margin: 0 auto; display: block; border-radius: 3px; width: 300px; height: 40px; font-size: 16px; color: #fff; text-align: center; line-height: 35px; padding: 0 10px; text-decoration: none; background: #108cee; border: none; background-image: -webkit-linear-gradient(top, #108cee, #0765e4); background-image: -moz-linear-gradient(top, #108cee, #0765e4); background-image: -o-linear-gradient(to bottom, #108cee, #0765e4); background-image: linear-gradient(to bottom, #108cee, #0765e4); background-repeat: repeat; outline: none; cursor: pointer;}
+.passport-regist .p4{width: 300px; height: 40px; margin-left: 120px;}
+.passport-regist .p4 a{font-size: 12px; display: inline-block; text-decoration: none; cursor: pointer;color: #333;}
+.passport-regist .p4 a:hover{text-decoration: underline;}
+.passport-regist .p4 .pass-reglink{margin: 19px 8px 0 0px; padding-right: 8px; border: none; }
+.passport-regist .p4 .pass-fgtpwd{margin: 19px 0 0 20px; float: right;}
+

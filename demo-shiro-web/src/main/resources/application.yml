@@ -1,0 +1,23 @@
+shiro:
+  realm-class: com.xinwei.shiro.MyShiroRealm 
+  custom-authc-filter-class: com.xinwei.shiro.AjaxAuthorizationFilter
+  login-url: /login
+  success-url: /admin/sysFunctionManager/role_manager
+  unauthorized-url: /403 
+  retry-max: 10000
+  sign-in:
+    user-param: username 
+    password-param: password 
+    remember-me-param: rememberMe 
+  hash-iterations: 1024
+  hash-algorithm-name: MD5
+  stored-credentials-hex-encoded: false
+  session: 
+      global-session-timeout: 180000
+      validation-interval: 1000
+      validation-scheduler-enabled: true 
+  filter-chain-definitions: 
+    /media/**: anon
+    /user/edit/*: authc,perms[user:edit]
+    /admin/**: authc
+   
