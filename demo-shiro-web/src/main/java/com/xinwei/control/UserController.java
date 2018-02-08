@@ -32,7 +32,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Shiro测试Controller
@@ -521,6 +524,7 @@ public class UserController {
 		// token.setRememberMe(true);
 		// 获取当前的Subject
 		Subject currentUser = SecurityUtils.getSubject();
+		
 
 		try {
 			// 在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
@@ -528,6 +532,7 @@ public class UserController {
 			// 所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
 			logger.info("对用户[" + username + "]进行登录验证..验证开始");
 			currentUser.login(token);
+			 
 			logger.info("对用户[" + username + "]进行登录验证..验证通过");
 			
 			//begin 添加记录日志功能
@@ -602,24 +607,6 @@ public class UserController {
 
 	}
 
-	//
-	// public Cookie getCookie(String cName,HttpServletRequest request) throws
-	// Exception
-	// {
-	// Cookie cookie=null;
-	// Cookie[] cs=this.getRequest().getCookies();
-	// if(cs!=null)
-	// {
-	// for(Cookie c:cs)
-	// {
-	// String name=c.getName();
-	// if(cName.equals(name))
-	// {
-	// cookie=c;
-	// }
-	// }
-	// }
-	// return cookie;
-	// }
+
 
 }

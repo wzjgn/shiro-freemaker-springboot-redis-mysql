@@ -5,6 +5,7 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.crypto.CipherService;
 import org.apache.shiro.io.Serializer;
+import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.AuthenticatingRealm;
@@ -12,19 +13,24 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.SessionValidationScheduler;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionIdGenerator;
 import org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.web.filter.authz.AuthorizationFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.web.session.mgt.WebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -85,6 +91,8 @@ public class ShiroAutoConfiguration {
 
     @Autowired(required = false)
     private Collection<SessionListener> listeners;
+    
+    
 
     @Bean(name = "mainRealm")
     @ConditionalOnMissingBean(name = "mainRealm")
@@ -121,17 +129,6 @@ public class ShiroAutoConfiguration {
         return realm;
     }
 
-    @Bean(name = "shiroCacheManager")
-    @ConditionalOnClass(name = {"org.apache.shiro.cache.ehcache.EhCacheManager"})
-    @ConditionalOnMissingBean(name = "shiroCacheManager")
-    public CacheManager ehcacheManager() {
-        EhCacheManager ehCacheManager = new EhCacheManager();
-        ShiroProperties.Ehcache ehcache = properties.getEhcache();
-        if (ehcache.getCacheManagerConfigFile() != null) {
-            ehCacheManager.setCacheManagerConfigFile(ehcache.getCacheManagerConfigFile());
-        }
-        return ehCacheManager;
-    }
 
     @Bean
     @ConditionalOnMissingBean(Cookie.class)

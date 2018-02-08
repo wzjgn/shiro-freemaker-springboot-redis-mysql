@@ -89,21 +89,7 @@ var TableManaged = function () {
                //  datatable.reload(null, false);
 
             		    });
-            $("#editUser").on('click',function(){
-            	var arr= setSelectAll();
-            	if(arr[0]>1){
-            		 
-		        	 appcommon.alert("每次只能修改一条记录",0,2000);
-            		return;
-            	}
-            	
-            	 if(arr[0]==0){ 
-            		 appcommon.alert("请选择记录",0,2000);
-            		 return ;
-            	 }
-            	toEditUserPage(arr[1]);
 
-           		    });
             
             $("#delUser").on('click',function(){
             	 var arr = setSelectAll();
@@ -340,36 +326,7 @@ function addUserSubmit(){
 	 });
 }
 
-/**
- * 获取待修改用户的值
- */
-function toEditUserPage(username){
-		 $.ajax({   
-		     url:'/admin/toEditUserPage',   
-		     type:'post',   
-		     data:'username='+username,
-		     async : true,// 默认为true 异步   
-	         error:function(){   
-		         
-	        	appcommon.alert("系统异常",2);
-		     },   
-		     success:function(data){
-		    	 var data = $.parseJSON(data); 
-		    	 
-		    	 $("#editUser-form input[name=company]").val(data.company);
-		    	 $("#editUser-form input[name=email]").val(data.email);
-		    	 $("#editUser-form input[name=position]").val(data.position);
-		    	 $("#editUser-form input[name=fax]").val(data.fax);
-		    	 $("#editUser-form input[name=mobile]").val(data.mobile);
-		    	 $("#editUser-form input[name=realName]").val(data.realName);
-		    	 $("#editUser-form input[name=username1]").val(data.username);
-		    	 $("#editUser-form input[name=username]").val(data.username);
-		    	 $('#Modal-EditUser').modal('show')
-		    	 
-		    	 TableManaged.editUserValidator();
-		     }
-		 });
-}
+
 
 
 /**

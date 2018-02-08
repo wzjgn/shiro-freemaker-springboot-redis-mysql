@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">  
+     
+     <!-- 权限认证缓存，20秒过期 -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="20"
+            timeToLiveSeconds="0"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            />
+            
+            
+     <!-- 登录次数缓存，超过N次锁定  锁定10秒钟 -->
+    <cache name="passwordRetryCache"  
+          maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="10"
+            timeToLiveSeconds="0"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120">
+    </cache>  
+    
+    
+</ehcache>  

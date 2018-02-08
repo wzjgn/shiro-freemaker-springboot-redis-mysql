@@ -66,5 +66,13 @@ public class RedisConfig extends CachingConfigurerSupport {
 		template.setKeySerializer(new StringRedisSerializer());
 		return template;
 	}
+	
 
+	
+	
+
+	 
+
+	
+	
 }

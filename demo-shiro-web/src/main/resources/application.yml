@@ -3,12 +3,9 @@ shiro:
   custom-authc-filter-class: com.xinwei.shiro.AjaxAuthorizationFilter
   login-url: /login
   success-url: /admin/sysFunctionManager/role_manager
-  unauthorized-url: /403 
-  retry-max: 10000
-  sign-in:
-    user-param: username 
-    password-param: password 
-    remember-me-param: rememberMe 
+  retry-max: 5
+  retry-expire-time-redis: 5
+  authorization-expire-time-redis: 10
   hash-iterations: 1024
   hash-algorithm-name: MD5
   stored-credentials-hex-encoded: false
@@ -18,6 +15,5 @@ shiro:
       validation-scheduler-enabled: true 
   filter-chain-definitions: 
     /media/**: anon
-    /user/edit/*: authc,perms[user:edit]
     /admin/**: authc
-   
+

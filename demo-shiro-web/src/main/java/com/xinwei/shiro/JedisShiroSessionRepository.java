@@ -19,8 +19,6 @@ public class JedisShiroSessionRepository implements ShiroSessionRepository {
 	private static Logger logger = LoggerFactory.getLogger(JedisShiroSessionRepository.class);
 
 	private RedisTemplate<String, Object> objectRedisTemplate;
-	// @Autowired
-	// RedisTemplate<Object, Object> redisTemplate;
 
 	@Override
 	public void saveSession(Session session) {

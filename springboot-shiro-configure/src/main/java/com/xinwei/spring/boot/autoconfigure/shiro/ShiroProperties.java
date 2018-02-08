@@ -40,6 +40,39 @@ public class ShiroProperties {
      */
     private int retryMax = 100;
 
+
+    /**
+     * 密码重试次数达到上限后，锁定时间（该参数仅适用于 redis管理cache）
+     */
+    private int retryExpireTimeRedis = 5;
+
+
+    /**
+     * 权限 缓存过期时间 （该参数仅适用于 redis管理cache）
+     */
+
+    private int AuthorizationExpireTimeRedis = 10;
+
+
+    public int getRetryExpireTimeRedis() {
+        return retryExpireTimeRedis;
+    }
+
+    public void setRetryExpireTimeRedis(int retryExpireTimeRedis) {
+        this.retryExpireTimeRedis = retryExpireTimeRedis;
+    }
+
+    
+
+    public int getAuthorizationExpireTimeRedis() {
+        return AuthorizationExpireTimeRedis;
+    }
+
+    public void setAuthorizationExpireTimeRedis(int authorizationExpireTimeRedis) {
+        AuthorizationExpireTimeRedis = authorizationExpireTimeRedis;
+    }
+
+    
     private boolean storedCredentialsHexEncoded = true;
 
     /**
@@ -140,9 +173,11 @@ public class ShiroProperties {
 
 	public static class Ehcache {
 
-        private String cacheManagerConfigFile = "classpath:org/apache/shiro/cache/ehcache/ehcache.xml";
+     //   private String cacheManagerConfigFile = "classpath:org/apache/shiro/cache/ehcache/ehcache.xml";
 
-        public String getCacheManagerConfigFile() {
+		   private String cacheManagerConfigFile = "classpath:ehcache.xml";
+
+		   public String getCacheManagerConfigFile() {
             return cacheManagerConfigFile;
         }
 

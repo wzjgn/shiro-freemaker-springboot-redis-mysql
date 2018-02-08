@@ -2,7 +2,6 @@ package com.xinwei.spring.boot.autoconfigure.shiro;
 
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.realm.Realm;
@@ -11,13 +10,10 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.core.annotation.Order;
 
 /**
  * This guy is lazy, nothing left.
@@ -41,16 +37,7 @@ public class ShiroConfiguration {
         return defaultAdvisorAutoProxyCreator;
     }
 
-    /**
-     * (基于内存的)用户授权信息Cache
-     */
-    @Bean(name = "shiroCacheManager")
-    @ConditionalOnMissingBean(name = "shiroCacheManager")
-    @ConditionalOnMissingClass(value = {"org.apache.shiro.cache.ehcache.EhCacheManager"})
-    public CacheManager shiroCacheManager() {
-        return new MemoryConstrainedCacheManager();
-    }
-
+    
     @Bean(name = "securityManager")
     @DependsOn(value = {"shiroCacheManager", "rememberMeManager", "mainRealm"})
     public DefaultSecurityManager securityManager(Realm realm, RememberMeManager rememberMeManager,
@@ -70,4 +57,6 @@ public class ShiroConfiguration {
         aasa.setSecurityManager(securityManager);
         return aasa;
     }
+    
+   
 }

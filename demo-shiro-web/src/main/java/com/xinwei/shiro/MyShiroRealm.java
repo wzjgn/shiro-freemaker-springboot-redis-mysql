@@ -46,8 +46,7 @@ public class MyShiroRealm extends AuthorizingRealm{
     /**
      * 权限认证，为当前登录的Subject授予角色和权限 
      * @see：本例中该方法的调用时机为需授权资源被访问时
-     * @see ：并且每次访问需授权资源时都会执行该方法中的逻辑，这表明本例中默认并未启用AuthorizationCache
-     * @see ：如果连续访问同一个URL（比如刷新），该方法不会被重复调用，Shiro有一个时间间隔（也就是cache时间，在ehcache-shiro.xml中配置），超过这个时间间隔再刷新页面，该方法会被执行
+     * @see ：如果连续访问同一个URL（比如刷新），该方法不会被重复调用，Shiro有一个时间间隔（系统提供三种cache：内存，ehcache ，redis，在ehcache-shiro.xml中配置），超过这个时间间隔再刷新页面，该方法会被执行
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -65,13 +64,13 @@ public class MyShiroRealm extends AuthorizingRealm{
            List<ShiroRole> roleList=user.getRoleList();
             for (ShiroRole role : roleList) {
                 info.addStringPermissions(role.getPermissionsName());
+                // 或者按下面这样添加
+                //  添加一个角色,不是配置意义上的添加,而是证明该用户拥有admin角色    
+                 // info.addRole(role.getRoleName());  
+                //添加权限  
+                // info.addStringPermission("admin:manage");  
             }
-            // 或者按下面这样添加
-          //  添加一个角色,不是配置意义上的添加,而是证明该用户拥有admin角色    
-         //   info.addRole("admin");  
-            //添加权限  
-           // info.addStringPermission("admin:manage");  
-            logger.info("已为用户[mike]赋予了[admin]角色和[admin:manage]权限");
+
             return info;
         }
         // 返回null的话，就会导致任何用户访问被拦截的请求时，都会自动跳转到unauthorizedUrl指定的地址
